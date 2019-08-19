@@ -1,0 +1,65 @@
+Q)How to import data into a collection?
+A)Import Data into a Collection.
+  MongoDB Compass can import data into a collection from either a JSON or CSV file.
+
+Procedure:-
+1)Navigate to the collection you wish to import data into.
+2)Click Collection in the top-level menu and select Import Data.
+3)Choose the appropriate file type of the source data file.
+4)Select the location of the source data file under Select File.
+5)Click Import.
+
+
+Q)How to export data into a collection?
+A)Export Data from a Collection.
+  MongoDB Compass can export data from a collection as either a JSON or CSV file.
+ If you specify a filter in the query bar prior to export, Compass can optionally only export documents
+ which match the specified query.
+
+Procedure:-
+
+1)Navigate to the collection you wish to export data into.
+2)Click Collection in the top-level menu and select Export Collection.
+3)Use the Export Full Collection toggle to indicate whether to export only the documents 
+matched by the query or the full collection.
+4)Choose the appropriate file type.
+5)Select the location of the export file under Select File.
+6)Click Export.
+
+
+Q) How to export data from MongoDB or databases?
+A)To export the database, simply tell mongodump which database (or collection) you want to export, and where to export it to.
+Example:-
+
+ Mine was the notes database, so my command looks like this:
+
+mongodump -d notes -o notebook
+This dumps the notes database into the notebook directory. Take a look at what we have in that directory now:
+
+notes
++-- books.bson
++-- system.indexes.bson
+
+0 directories, 2 files
+The only collection in my pets database is the books collection, 
+however you'll see a .bson file for each collection in your database, 
+plus the system indexes collection. It is up to you whether you want to take individual collections, 
+or a whole database, but bear in mind that your choice will dictate whether you get information about indexes etc
+ when you import the data elsewhere.
+
+
+Q)How to import data from database in mongoDB?
+A)To import, simply use the mongorestore command, which accepts either a single .bson file 
+representing a collection, or a directory containing multiple files. 
+Here's my example:
+
+mongorestore -d notes /path/to/notes
+You can specify any database name and path to files you like, so for taking backups or restoring additional copies of a database.
+ 
+
+Q)Commands to import export data into collections?
+How to export Collection?
+ mongoexport --db <db_name> --collection <collection_name> --out <c:\data_export\movies.json>
+ 
+ ---->How to import Collection?
+   mongoimport --db <db_name> --collection <collection_name> --file <c:\data_export\movies.json>
